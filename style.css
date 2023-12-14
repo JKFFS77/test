@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Custom Chromecast Sender</title>
+  <script type="text/javascript" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js"></script>
+</head>
+<body>
+  <button onclick="startCasting()">Start Casting</button>
+
+  <script>
+    function startCasting() {
+      const applicationId = '5E7A2C2C'; // Your custom receiver application ID
+
+      const sessionRequest = new chrome.cast.SessionRequest(applicationId);
+      const apiConfig = new chrome.cast.ApiConfig(sessionRequest);
+
+      chrome.cast.initialize(apiConfig, onInitSuccess, onError);
+    }
+
+    function onInitSuccess() {
+      // Successfully initialized the Cast API
+      // You can now proceed to start a session and load content
+      console.log('Cast API initialized successfully');
+    }
+
+    function onError(error) {
+      // Handle initialization errors
+      console.error('Error initializing Cast API', error);
+    }
+  </script>
+</body>
+</html>
